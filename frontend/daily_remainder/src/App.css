@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  background: #f4f7f6;
+  font-family: sans-serif;
+}
+
+/* GRID — Desktop/Tablets */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 25px;
+}
+
+/* MOBILE LAYOUT */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    padding: 15px;
+    gap: 15px;
+  }
+}
