@@ -1,0 +1,48 @@
+.ayah-page {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.ayah-card {
+  width: 760px;
+  max-width: 95%;
+  background: white;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(15,23,42,0.06);
+}
+
+.ayah-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ayah-head h2 { margin: 0; color: #064e3b; }
+
+.ayah-actions { display:flex; gap:8px; align-items:center; }
+
+.btn { padding: 8px 12px; border-radius:8px; border:none; cursor:pointer; font-weight:700; }
+.btn.small { padding:6px 10px; }
+.btn.outline { background:white; border:2px solid #06b6a4; color:#064e3b; }
+.btn.primary { background:#06b6a4; color:white; }
+
+.msg { margin-top:10px; color:#065f46; font-weight:600; }
+
+.ayah-body { margin-top:14px; text-align:center; }
+.ayah-arabic { font-size:1.8rem; line-height:1.6; direction: rtl; font-weight:700; }
+.ayah-translation { margin-top:10px; color:#374151; }
+
+.bookmarks-section { margin-top:18px; }
+.bm-list { list-style:none; padding:0; margin:8px 0 0 0; display:grid; gap:10px; }
+.bm-list li { padding:10px; border-radius:10px; background:#f8faf9; border:1px solid #eef2f2; }
+.bm-arabic { font-weight:700; direction:rtl; }
+.bm-trans { color:#6b7280; margin-top:4px; }
+
+/* responsive */
+@media (max-width: 880px) {
+  .ayah-card { padding:14px; width: 100%; }
+  .ayah-arabic { font-size:1.4rem; }
+  .ayah-actions { flex-direction:column; gap:6px; align-items:flex-end; }
+}
