@@ -1,0 +1,16 @@
+.surah-page {
+  max-width: 700px;
+  margin: 32px auto;
+  padding: 20px;
+}
+
+.surah-list {
+  display: grid;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .surah-page {
+    padding: 10px;
+  }
+}

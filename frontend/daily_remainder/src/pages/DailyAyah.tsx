@@ -16,6 +16,7 @@ const DailyAyah: React.FC = () => {
     return v ? JSON.parse(v) : [];
   });
   const [serverBookmarks, setServerBookmarks] = useState<Bookmark[] | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const loadAyah = async () => {
     try {
@@ -64,7 +65,13 @@ const DailyAyah: React.FC = () => {
 
   useEffect(() => {
     loadAyah();
-    loadServerBookmarks();
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (token) {
+      setIsLoggedIn(true);
+      loadServerBookmarks();
+    } else {
+      setIsLoggedIn(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -89,37 +96,52 @@ const DailyAyah: React.FC = () => {
         {ayah ? (
           <div className="ayah-body">
             <div className="ayah-arabic">{ayah.arabic}</div>
-            {ayah.translation && <div className="ayah-translation">{ayah.translation}</div>}
+            {ayah.translation_bn && (
+              <div className="ayah-translation ayah-translation-bn" style={{ marginBottom: 18 }}>{ayah.translation_bn}</div>
+            )}
+            {ayah.reference_bn && (
+              <div className="ayah-ref ayah-ref-bn">{ayah.reference_bn.replace(/سورة.*?،/g, '').trim()}</div>
+            )}
+            {ayah.surah_ar && ayah.number && (
+              <div className="ayah-ref ayah-ref-ar">سورة {ayah.surah_ar}، آية {ayah.number}</div>
+            )}
           </div>
         ) : (
           <div className="hint">Loading...</div>
         )}
 
         <div className="bookmarks-section">
-          <h3>Your Local Bookmarks</h3>
-          {localBookmarks.length === 0 ? <div className="hint">No local bookmarks yet.</div> : (
-            <ul className="bm-list">
-              {localBookmarks.map((b, i) => (
-                <li key={i}>
-                  <div className="bm-arabic">{b.arabic}</div>
-                  {b.translation && <div className="bm-trans">{b.translation}</div>}
-                </li>
-              ))}
-            </ul>
+          {!isLoggedIn && (
+            <>
+              <h3>Your Local Bookmarks</h3>
+              {localBookmarks.length === 0 ? <div className="hint">No local bookmarks yet.</div> : (
+                <ul className="bm-list">
+                  {localBookmarks.map((b, i) => (
+                    <li key={i}>
+                      <div className="bm-arabic">{b.arabic}</div>
+                      {b.translation_bn && <div className="bm-trans">{b.translation_bn}</div>}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </>
           )}
-
-          <h3>Your Server Bookmarks</h3>
-          {serverBookmarks === null ? <div className="hint">Login to see server bookmarks.</div> : (
-            serverBookmarks.length === 0 ? <div className="hint">No bookmarks in your account.</div> : (
-              <ul className="bm-list">
-                {serverBookmarks.map((b) => (
-                  <li key={b._id}>
-                    <div className="bm-arabic">{b.data?.arabic}</div>
-                    {b.data?.translation && <div className="bm-trans">{b.data.translation}</div>}
-                  </li>
-                ))}
-              </ul>
-            )
+          {isLoggedIn && (
+            <>
+              <h3>Your Server Bookmarks</h3>
+              {serverBookmarks === null ? <div className="hint">Loading bookmarks...</div> : (
+                serverBookmarks.length === 0 ? <div className="hint">No bookmarks in your account.</div> : (
+                  <ul className="bm-list">
+                    {serverBookmarks.map((b) => (
+                      <li key={b._id}>
+                        <div className="bm-arabic">{b.data?.arabic}</div>
+                        {b.data?.translation && <div className="bm-trans">{b.data.translation}</div>}
+                      </li>
+                    ))}
+                  </ul>
+                )
+              )}
+            </>
           )}
         </div>
       </div>
