@@ -33,7 +33,6 @@ const JuzDetail: React.FC = () => {
 
   return (
     <div className="container">
-      <BackHomeButton />
       <h2>Juz {number}</h2>
       <div style={{ marginTop: 24 }}>
         {ayahs.map(a => (

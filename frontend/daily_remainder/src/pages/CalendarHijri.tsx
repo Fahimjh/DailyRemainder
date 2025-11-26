@@ -89,8 +89,7 @@ const CalendarHijri: React.FC = () => {
 
   return (
     <div className="calendar-page">
-      <BackHomeButton />
-      <h2>Hijri & Gregorian Calendar</h2>
+      <h2 style={{ textAlign: 'center' }}>Hijri & Gregorian Calendar</h2>
       <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginBottom: 18, alignItems: 'center', flexDirection: 'column' }}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: 12, alignItems: 'center', width: '100%' }}>
           <button className="btn outline" onClick={handlePrev}>Previous</button>

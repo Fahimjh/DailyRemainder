@@ -54,7 +54,6 @@ const Tasbih: React.FC = () => {
     <div className="tasbih-page">
       <div className="tasbih-card">
         <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 12 }}>
-          <BackHomeButton />
         </div>
         <h2 className="tasbih-title">Tasbih Counter</h2>
 

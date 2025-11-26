@@ -61,7 +61,6 @@ const PrayerTimes: React.FC = () => {
     <div className="prayer-page">
       <div className="prayer-card">
         <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 12 }}>
-          <BackHomeButton />
         </div>
         <h2 className="prayer-title">Prayer Times</h2>
 

@@ -1,0 +1,38 @@
+.auth-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(6, 144, 119, 0.08), 0 1.5px 6px 0 rgba(0,0,0,0.04);
+  padding: 36px 32px 32px 32px;
+  min-width: 320px;
+  max-width: 370px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.auth-card .input {
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin-bottom: 0;
+}
+
+.auth-card .btn {
+  background: #069077;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px 0;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 120ms;
+}
+
+.auth-card .btn:hover {
+  background: #047a63;
+}

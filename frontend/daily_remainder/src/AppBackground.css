@@ -1,0 +1,5 @@
+body, #root, .app-bg {
+  background: #fdf6f0 !important; /* warm, soft beige */
+  min-height: 100vh;
+  width: 100vw;
+}

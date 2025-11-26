@@ -25,7 +25,6 @@ const Bookmarks: React.FC = () => {
 
   return (
     <div className="container">
-      <BackHomeButton />
       <h2>Bookmarks</h2>
       <div className="grid">
         {items.length === 0 && <div className="card">No bookmarks yet</div>}

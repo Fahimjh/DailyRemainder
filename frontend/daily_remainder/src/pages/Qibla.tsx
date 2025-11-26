@@ -34,7 +34,6 @@ const Qibla: React.FC = () => {
 
   return (
     <div className="container">
-      <BackHomeButton />
       <h2>Qibla Direction</h2>
       <div className="card big qibla-card">
         {pos && bearing !== null ? (

@@ -80,7 +80,6 @@ const DailyAyah: React.FC = () => {
     <div className="ayah-page">
       <div className="ayah-card">
         <div className="ayah-head">
-          <BackHomeButton />
           <h2>Daily Ayah</h2>
           <div className="ayah-actions">
             <button onClick={loadAyah} className="btn small">{loading ? "..." : "Next Ayah"}</button>

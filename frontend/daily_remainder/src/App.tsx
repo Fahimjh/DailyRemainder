@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import TopBar from "./components/TopBar";
+import "./AppBackground.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -25,12 +25,11 @@ const App: React.FC = () => {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Header />
+        <TopBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/ayah" element={<DailyAyah />} />
           <Route path="/quran" element={<Quran />} />
-
           <Route path="/prayer" element={<PrayerTimes />} />
           <Route path="/tasbih" element={<Tasbih />} />
           <Route path="/qibla" element={<Qibla />} />
@@ -41,7 +40,6 @@ const App: React.FC = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </AuthProvider>
   );
