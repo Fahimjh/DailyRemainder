@@ -1,3 +1,13 @@
+export const updateBookmarks = async (req: Request, res: Response) => {
+  try {
+    const { userId, bookmarks } = req.body;
+    const user = await User.findByIdAndUpdate(userId, { bookmarks }, { new: true });
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to update bookmarks" });
+  }
+};
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User";
