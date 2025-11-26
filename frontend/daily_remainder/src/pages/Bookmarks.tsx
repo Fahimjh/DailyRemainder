@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import API from "../services/apiInstance";
+import BackHomeButton from "../components/BackHomeButton";
 
 const Bookmarks: React.FC = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -24,6 +25,7 @@ const Bookmarks: React.FC = () => {
 
   return (
     <div className="container">
+      <BackHomeButton />
       <h2>Bookmarks</h2>
       <div className="grid">
         {items.length === 0 && <div className="card">No bookmarks yet</div>}

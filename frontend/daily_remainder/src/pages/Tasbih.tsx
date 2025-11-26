@@ -1,5 +1,6 @@
 // src/pages/Tasbih.tsx
 import React, { useEffect, useState } from "react";
+import BackHomeButton from "../components/BackHomeButton";
 import { saveTasbihCount } from "../services/api";
 import "./Tasbih.css";
 
@@ -52,6 +53,9 @@ const Tasbih: React.FC = () => {
   return (
     <div className="tasbih-page">
       <div className="tasbih-card">
+        <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 12 }}>
+          <BackHomeButton />
+        </div>
         <h2 className="tasbih-title">Tasbih Counter</h2>
 
         <div className="counter-display" aria-live="polite">

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import BackHomeButton from "../components/BackHomeButton";
 import { getPrayerTimesByCity } from "../services/api";
 import { PrayerResponse, Timings } from "../types/prayer";
 import "./PrayerTimes.css";
@@ -59,6 +60,9 @@ const PrayerTimes: React.FC = () => {
   return (
     <div className="prayer-page">
       <div className="prayer-card">
+        <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 12 }}>
+          <BackHomeButton />
+        </div>
         <h2 className="prayer-title">Prayer Times</h2>
 
         <form className="prayer-form" onSubmit={onSearch}>

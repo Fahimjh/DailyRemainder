@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../services/apiInstance";
+import BackHomeButton from "../components/BackHomeButton";
 
 interface Ayah {
   number: number;
@@ -49,6 +50,7 @@ const SurahExplorer: React.FC = () => {
 
   return (
     <div className="container">
+      <BackHomeButton />
       <h2>Surah Explorer</h2>
       <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginBottom: 18 }}>
         <button className="btn outline" onClick={handlePrev} disabled={surahNum === 1}>Previous Surah</button>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import API from "../services/apiInstance";
 import Loader from "../components/Loader";
 import "./CalendarHijri.css";
+import BackHomeButton from "../components/BackHomeButton";
 
 const dayNames = [
   { en: "Sun", ar: "الأحد" },
@@ -88,6 +89,7 @@ const CalendarHijri: React.FC = () => {
 
   return (
     <div className="calendar-page">
+      <BackHomeButton />
       <h2>Hijri & Gregorian Calendar</h2>
       <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginBottom: 18, alignItems: 'center', flexDirection: 'column' }}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: 12, alignItems: 'center', width: '100%' }}>

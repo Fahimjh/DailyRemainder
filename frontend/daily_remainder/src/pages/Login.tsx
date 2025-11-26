@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import API from "../services/apiInstance";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import BackHomeButton from "../components/BackHomeButton";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -24,6 +25,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="container form-wrap">
+      <BackHomeButton />
       <h2>Login</h2>
       <form onSubmit={submit} className="form">
         <input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />

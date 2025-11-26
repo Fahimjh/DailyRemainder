@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getRandomAyah, addBookmarkServer, getBookmarksServer } from "../services/api";
 import { Ayah, Bookmark } from "../types/ayah";
 import "./DailyAyah.css";
+import BackHomeButton from "../components/BackHomeButton";
 
 const LOCAL_KEY = "daily_ayah_bookmarks";
 const USER_KEY = "user";
@@ -79,6 +80,7 @@ const DailyAyah: React.FC = () => {
     <div className="ayah-page">
       <div className="ayah-card">
         <div className="ayah-head">
+          <BackHomeButton />
           <h2>Daily Ayah</h2>
           <div className="ayah-actions">
             <button onClick={loadAyah} className="btn small">{loading ? "..." : "Next Ayah"}</button>

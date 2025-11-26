@@ -2,6 +2,7 @@ import "./JuzDetail.css";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../services/apiInstance";
+import BackHomeButton from "../components/BackHomeButton";
 
 interface Ayah {
   number: number;
@@ -32,6 +33,7 @@ const JuzDetail: React.FC = () => {
 
   return (
     <div className="container">
+      <BackHomeButton />
       <h2>Juz {number}</h2>
       <div style={{ marginTop: 24 }}>
         {ayahs.map(a => (

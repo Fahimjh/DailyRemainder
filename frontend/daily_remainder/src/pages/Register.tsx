@@ -3,6 +3,7 @@ import "./Register.css";
 import API from "../services/apiInstance";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import BackHomeButton from "../components/BackHomeButton";
 
 const Register: React.FC = () => {
   const [name, setName] = useState("");
@@ -27,6 +28,7 @@ const Register: React.FC = () => {
 
   return (
     <div className="container form-wrap">
+      <BackHomeButton />
       <h2>Register</h2>
       <form onSubmit={submit} className="form">
         <input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />

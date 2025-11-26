@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import BackHomeButton from "../components/BackHomeButton";
 
 // Kaaba coords
 const KAABA = { lat: 21.422487, lon: 39.826206 };
@@ -33,6 +34,7 @@ const Qibla: React.FC = () => {
 
   return (
     <div className="container">
+      <BackHomeButton />
       <h2>Qibla Direction</h2>
       <div className="card big qibla-card">
         {pos && bearing !== null ? (

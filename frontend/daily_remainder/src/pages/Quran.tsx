@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import API from "../services/apiInstance";
 import "./Quran.css";
+import BackHomeButton from "../components/BackHomeButton";
 
 interface Ayah {
   number: number;
@@ -46,6 +47,7 @@ const Quran: React.FC = () => {
 
   return (
     <div className="container">
+      <BackHomeButton />
       <h2>Quran - Juz {juz}</h2>
       <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginBottom: 18 }}>
         <button className="btn outline" onClick={handlePrev} disabled={juz === 1}>Previous Juz</button>
