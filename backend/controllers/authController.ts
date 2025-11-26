@@ -19,7 +19,9 @@ export const register = async (req: Request, res: Response) => {
     const hashed = await bcrypt.hash(password, 10);
 
     const user = await User.create({ name, email, password: hashed });
-    res.json(user);
+    const userObj = user.toObject();
+    delete userObj.password;
+    res.json(userObj);
   } catch (err) {
     res.status(500).json({ message: "Registration failed" });
   }
@@ -36,9 +38,24 @@ export const login = async (req: Request, res: Response) => {
     if (!valid) return res.status(400).json({ message: "Wrong password" });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET!);
-
-    res.json({ token, user });
+    const userObj = user.toObject();
+    delete userObj.password;
+    res.json({ token, user: userObj });
   } catch (err) {
     res.status(500).json({ message: "Login failed" });
+  }
+};
+
+// Get current user info (protected)
+export const getMe = async (req: Request, res: Response) => {
+  try {
+    const userId = req.userId;
+    const user: any = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+    const userObj = user.toObject();
+    delete userObj.password;
+    res.json(userObj);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch user info" });
   }
 };
