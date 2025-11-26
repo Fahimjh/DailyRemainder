@@ -4,7 +4,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="container">
       <h2>Dashboard</h2>
-      <p>Welcome to your Islamic Companion dashboard. Use the menu to access features.</p>
+      <p>Welcome to your Al-Mudhakkirah – The Daily Islamic Reminder dashboard. Use the menu to access features.</p>
     </div>
   );
 };

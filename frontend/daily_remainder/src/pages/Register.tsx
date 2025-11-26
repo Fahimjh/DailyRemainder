@@ -14,9 +14,8 @@ const Register: React.FC = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await API.post("/auth/register", { name, email, password });
-      setUser(res.data);
-      // optionally auto-login: request token from login
+      await API.post("/auth/register", { name, email, password });
+      // Immediately log in after registration
       const loginRes = await API.post("/auth/login", { email, password });
       localStorage.setItem("token", loginRes.data.token);
       setUser(loginRes.data.user);
