@@ -17,7 +17,6 @@ import CalendarHijri from "./pages/CalendarHijri";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 
-
 const App: React.FC = () => {
   return (
     <AuthProvider>

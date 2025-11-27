@@ -1,0 +1,106 @@
+/* Desktop flex and nav helpers */
+.topbar-desktop-flex {
+  flex: 1;
+}
+.topbar-desktop-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.topbar-desktop-links {
+  min-width: 260px;
+  text-align: right;
+  margin-right: 48px;
+  display: flex;
+  gap: 24px;
+  justify-content: flex-end;
+  align-items: center;
+}
+/* Responsive TopBar styles */
+
+/* Desktop TopBar (default) */
+.topbar-desktop-root {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0 24px 0;
+  min-height: 60px;
+  gap: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+.topbar-title {
+  font-weight: 700;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 1.1;
+}
+.topbar-nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  flex-wrap: wrap;
+}
+.topbar-nav a, .topbar-logout {
+  color: #069077;
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: text-decoration 0.2s;
+}
+.topbar-nav a.active {
+  text-decoration: underline;
+}
+.topbar-logout {
+  color: #069077;
+}
+.topbar-mobile-root {
+  display: none !important;
+}
+.mobile-landscape-msg {
+  display: none;
+}
+
+/* Mobile TopBar (only on small screens) */
+@media (max-width: 700px) {
+  .topbar-desktop-root {
+    display: none !important;
+  }
+  .topbar-mobile-root {
+    display: block !important;
+    width: 100%;
+    padding: 10px 0 10px 0;
+    background: none;
+  }
+  .topbar-title {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .topbar-nav {
+    justify-content: center;
+    gap: 14px;
+    font-size: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
+  .mobile-landscape-msg {
+    display: block;
+    margin-top: 8px;
+    color: #065f46;
+    font-size: 15px;
+    text-align: center;
+    background: #e6fff2;
+    border: 1px solid #b2e5d3;
+    border-radius: 6px;
+    padding: 6px 10px;
+    max-width: 95vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
