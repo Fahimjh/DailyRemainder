@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import "./TopBar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
@@ -27,42 +28,24 @@ const TopBar: React.FC = () => {
   // Desktop TopBar (PC)
   if (!isMobile) {
     return (
-      <div style={{
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '24px 0 24px 0',
-        minHeight: 60,
-        gap: 0,
-        position: 'relative',
-        boxSizing: 'border-box',
-      }}>
-        <div style={{ flex: 1 }} />
-        <div style={{
-          fontWeight: 700,
-          fontSize: '2.2rem',
-          letterSpacing: 1,
-          textAlign: 'center',
-          lineHeight: 1.1,
-        }}>
-          Al-Mudhakkirah – The Daily Islamic Reminder
-        </div>
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-          <div style={{ minWidth: 260, textAlign: 'right', marginRight: 48, display: 'flex', gap: 24, justifyContent: 'flex-end', alignItems: 'center' }}>
+      <div className="topbar-desktop-root">
+        <div className="topbar-desktop-flex" />
+        <div className="topbar-title">Al-Mudhakkirah – The Daily Islamic Reminder</div>
+        <div className="topbar-desktop-flex topbar-desktop-nav">
+          <div className="topbar-desktop-links">
             {user && location.pathname !== '/dashboard' && (
-              <Link to="/dashboard" style={{ color: '#069077', fontWeight: 600, textDecoration: location.pathname === '/dashboard' ? 'underline' : 'none', fontSize: 18 }}>Dashboard</Link>
+              <Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}>Dashboard</Link>
             )}
             {(!user || location.pathname !== '/') && (
-              <Link to="/" style={{ color: '#069077', fontWeight: 600, textDecoration: location.pathname === '/' ? 'underline' : 'none', fontSize: 18 }}>Home</Link>
+              <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
             )}
             {!user && (
-              <Link to="/login" style={{ color: '#069077', fontWeight: 600, textDecoration: location.pathname === '/login' ? 'underline' : 'none', fontSize: 18 }}>Login</Link>
+              <Link to="/login" className={location.pathname === '/login' ? 'active' : ''}>Login</Link>
             )}
             {user ? (
-              <span onClick={handleLogout} style={{ color: '#069077', fontWeight: 600, cursor: 'pointer', fontSize: 18 }}>Logout</span>
+              <span onClick={handleLogout} className="topbar-logout">Logout</span>
             ) : (
-              <Link to="/register" style={{ color: '#069077', fontWeight: 600, textDecoration: location.pathname === '/register' ? 'underline' : 'none', fontSize: 18 }}>Register</Link>
+              <Link to="/register" className={location.pathname === '/register' ? 'active' : ''}>Register</Link>
             )}
           </div>
         </div>
@@ -73,21 +56,21 @@ const TopBar: React.FC = () => {
   // Mobile TopBar
   return (
     <div className="topbar-mobile-root">
-      <div className="topbar-title">Al-Mudhakkirah – The Daily Islamic Reminder</div>
-      <div className="topbar-nav">
+      <div className="topbar-title topbar-mobile-title">Al-Mudhakkirah – The Daily Islamic Reminder</div>
+      <div className="topbar-nav topbar-mobile-nav">
         {user && location.pathname !== '/dashboard' && (
-          <Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}>Dashboard</Link>
+          <Link to="/dashboard" className={`topbar-mobile-link${location.pathname === '/dashboard' ? ' active' : ''}`}>Dashboard</Link>
         )}
         {(!user || location.pathname !== '/') && (
-          <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
+          <Link to="/" className={`topbar-mobile-link${location.pathname === '/' ? ' active' : ''}`}>Home</Link>
         )}
         {!user && (
-          <Link to="/login" className={location.pathname === '/login' ? 'active' : ''}>Login</Link>
+          <Link to="/login" className={`topbar-mobile-link${location.pathname === '/login' ? ' active' : ''}`}>Login</Link>
         )}
         {user ? (
-          <span onClick={handleLogout} className="topbar-logout">Logout</span>
+          <span onClick={handleLogout} className="topbar-logout topbar-mobile-link">Logout</span>
         ) : (
-          <Link to="/register" className={location.pathname === '/register' ? 'active' : ''}>Register</Link>
+          <Link to="/register" className={`topbar-mobile-link${location.pathname === '/register' ? ' active' : ''}`}>Register</Link>
         )}
       </div>
       <div className="mobile-landscape-msg">

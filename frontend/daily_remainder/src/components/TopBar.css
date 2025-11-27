@@ -2,6 +2,55 @@
 .topbar-desktop-flex {
   flex: 1;
 }
+@media (max-width: 700px) {
+  .topbar-mobile-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #000;
+    margin-bottom: 8px;
+    margin-top: 0;
+    letter-spacing: 1.3px;
+    background: none;
+    padding: 12px 0 2px 0;
+    text-align: center;
+    width: 100%;
+    display: block;
+  }
+  .topbar-mobile-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 0;
+    background: none;
+    padding-bottom: 8px;
+    width: 100%;
+  }
+  .topbar-mobile-link {
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    padding: 0 10px;
+    color: #111;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+    font-size: 1.08em;
+    display: inline-block;
+  }
+  .topbar-mobile-link.active, .topbar-mobile-link:active, .topbar-mobile-link:focus {
+    background: #e6fff2;
+    color: #069077;
+    text-decoration: underline;
+  }
+  .topbar-mobile-link:hover {
+    background: #e6fff2;
+    color: #069077;
+  }
+}
 .topbar-desktop-nav {
   display: flex;
   justify-content: flex-end;
@@ -74,30 +123,54 @@
   .topbar-mobile-root {
     display: block !important;
     width: 100%;
-    padding: 10px 0 10px 0;
-    background: none;
+    padding: 0;
+    background: #fdf6f0;
     text-align: center;
+    border-bottom: 1.5px solid #f3e6d6;
+    box-shadow: 0 2px 8px #f3e6d655;
   }
   .topbar-title {
-    font-size: 1.45rem;
-    font-weight: 800;
+    font-size: 1.7rem;
+    font-weight: 900;
     text-align: center;
-    margin-bottom: 10px;
-    letter-spacing: 1.2px;
+    margin-bottom: 8px;
+    margin-top: 0;
+    letter-spacing: 1.3px;
+    color: #000000;
+    background: none;
+    padding: 10px 0 2px 0;
   }
   .topbar-nav {
+    display: flex;
     justify-content: center;
-    gap: 22px;
-    font-size: 17px;
-    flex-wrap: wrap;
-    margin-bottom: 0;
-    font-weight: 700;
+    align-items: center;
+    gap: 28px;
+    font-size: 18px;
+    font-weight: 800;
     text-align: center;
+    margin-bottom: 0;
+    margin-top: 0;
+    background: none;
+    padding-bottom: 8px;
   }
   .topbar-nav a, .topbar-logout {
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    padding: 0 4px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    padding: 0 8px;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+    font-size: 1.08em;
+  }
+  .topbar-nav a.active, .topbar-nav a:active, .topbar-nav a:focus {
+    background: #e6fff2;
+    color: #069077;
+    text-decoration: underline;
+  }
+  .topbar-nav a:hover, .topbar-logout:hover {
+    background: #e6fff2;
+    color: #069077;
   }
   .mobile-landscape-msg {
     display: block;
