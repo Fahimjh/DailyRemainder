@@ -71,7 +71,22 @@ const Quran: React.FC = () => {
         <div>Juz not found.</div>
       ) : (
         <div style={{ marginTop: 24 }}>
-          {/* Display Juz details here, e.g., summary or metadata if needed */}
+          {/* Display all ayahs in the Juz */}
+          {Array.isArray(juzInfo.ayahs) && juzInfo.ayahs.length > 0 ? (
+            juzInfo.ayahs.map((a: any, idx: number) => (
+              <div key={a.number || idx} className="juz-ayah">
+                <div className="juz-ayah-arabic">{a.text}</div>
+                {a.bangla && (
+                  <div className="ayah-translation ayah-translation-bn">{a.bangla}</div>
+                )}
+                <div className="juz-ayah-meta">
+                  Surah {a.surah?.englishName || a.surah?.name || ''} ({a.surah?.number || ''}) — Ayah {a.numberInSurah || a.number}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div>No ayahs found for this Juz.</div>
+          )}
         </div>
       )}
     </div>
