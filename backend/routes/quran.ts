@@ -2,7 +2,7 @@ import { Router } from "express";
 import axios from "axios";
 
 const router = Router();
-// Get a specific Juz by number (default to en.asad translation)
+// Get a specific Juz by number (merged Arabic and Bengali translation)
 router.get("/juz/:number", async (req, res) => {
   try {
     const { number } = req.params;
@@ -40,31 +40,12 @@ router.get("/surah", async (req, res) => {
   }
 });
 
-// Get a specific surah by number
+// Get a specific surah by number (returns raw API response)
 router.get("/surah/:number", async (req, res) => {
   try {
     const { number } = req.params;
-    // Fetch Arabic and Bengali surah data in parallel
-    const [arRes, bnRes] = await Promise.all([
-      axios.get(`https://api.alquran.cloud/v1/surah/${number}`),
-      axios.get(`https://api.alquran.cloud/v1/surah/${number}/bn.bengali`)
-    ]);
-    const arData = arRes.data.data;
-    const bnData = bnRes.data.data;
-    // Merge ayahs for Bengali translation
-    const mergedAyahs = arData.ayahs.map((arAyah: any, idx: number) => ({
-      number: arAyah.number,
-      text: arAyah.text,
-      bangla: bnData.ayahs[idx]?.text || ""
-    }));
-    // Return both Arabic and Bengali surah info, and merged ayahs
-    res.json({
-      number: arData.number,
-      name: arData.name, // Arabic name
-      englishName: arData.englishName, // Transliteration (e.g. Al-Faatiha)
-      englishNameTranslation: arData.englishNameTranslation, // English meaning
-      ayahs: mergedAyahs
-    });
+    const response = await axios.get(`https://api.alquran.cloud/v1/surah/${number}`);
+    res.json(response.data.data);
   } catch (err) {
     res.status(500).json({ message: "Failed to fetch surah" });
   }
