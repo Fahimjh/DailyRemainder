@@ -76,18 +76,28 @@
     width: 100%;
     padding: 10px 0 10px 0;
     background: none;
+    text-align: center;
   }
   .topbar-title {
-    font-size: 1.2rem;
+    font-size: 1.45rem;
+    font-weight: 800;
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    letter-spacing: 1.2px;
   }
   .topbar-nav {
     justify-content: center;
-    gap: 14px;
-    font-size: 16px;
+    gap: 22px;
+    font-size: 17px;
     flex-wrap: wrap;
     margin-bottom: 0;
+    font-weight: 700;
+    text-align: center;
+  }
+  .topbar-nav a, .topbar-logout {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0 4px;
   }
   .mobile-landscape-msg {
     display: block;
