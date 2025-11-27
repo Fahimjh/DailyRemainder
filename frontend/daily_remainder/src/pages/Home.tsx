@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "../components/Card";
 import "./Home.css";
 import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const Home: React.FC = () => {
   const nav = useNavigate();
+  const { user } = useContext(AuthContext);
 
   return (
     <>
@@ -20,6 +22,28 @@ const Home: React.FC = () => {
       <div style={{ width: '100%', textAlign: 'center', margin: '32px 0 12px 0', color: '#044f46', fontWeight: 500, fontSize: 16 }}>
         © 2025 Al-Mudhakkirah – The Daily Islamic Reminder. All rights reserved By Fahimjh.
       </div>
+      {!user && (
+        <div style={{
+          position: 'fixed',
+          right: 24,
+          bottom: 24,
+          background: '#fff',
+          color: '#065f46',
+          border: '1.5px solid #06b6a4',
+          borderRadius: 10,
+          boxShadow: '0 2px 12px #06b6a422',
+          padding: '16px 28px',
+          fontWeight: 500,
+          fontSize: 17,
+          zIndex: 1000,
+          minWidth: 260,
+          maxWidth: 340,
+          textAlign: 'center',
+          transition: 'opacity 0.3s',
+        }}>
+          <span>Log in to bookmark your favorite Ayah, Juz, and Surah for quick access anytime!</span>
+        </div>
+      )}
     </>
   );
 };

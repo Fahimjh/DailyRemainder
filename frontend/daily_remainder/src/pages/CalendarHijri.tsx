@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import API from "../services/apiInstance";
 import Loader from "../components/Loader";
 import "./CalendarHijri.css";
-import BackHomeButton from "../components/BackHomeButton";
 
 const dayNames = [
   { en: "Sun", ar: "الأحد" },
@@ -89,27 +88,27 @@ const CalendarHijri: React.FC = () => {
 
   return (
     <div className="calendar-page">
-      <h2 style={{ textAlign: 'center' }}>Hijri & Gregorian Calendar</h2>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginBottom: 18, alignItems: 'center', flexDirection: 'column' }}>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 12, alignItems: 'center', width: '100%' }}>
+      <h2 className="calendar-title">Hijri & Gregorian Calendar</h2>
+      <div className="calendar-header-outer">
+        <div className="calendar-header">
           <button className="btn outline" onClick={handlePrev}>Previous</button>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontWeight: 600, fontSize: 17, color: '#1a7f37' }}>{hijriMonthAr}</div>
-            <div style={{ fontWeight: 500, fontSize: 14, color: '#888' }}>{hijriMonthEn}</div>
-            <div style={{ fontWeight: 600, fontSize: 18 }}>{monthNames[month - 1]} {year}</div>
+          <div className="calendar-month-info">
+            <div className="calendar-hijri-ar">{hijriMonthAr}</div>
+            <div className="calendar-hijri-en">{hijriMonthEn}</div>
+            <div className="calendar-gregorian">{monthNames[month - 1]} {year}</div>
           </div>
           <button className="btn outline" onClick={handleNext}>Next</button>
         </div>
       </div>
-      <div style={{ overflowX: 'auto', padding: 0 }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', background: '#fff' }}>
+      <div className="calendar-table-wrapper">
+        <table className="calendar-table">
           <thead>
             <tr>
               {getHijriWeekdays(days).map((d, i) => (
-                <th key={i} style={{ padding: 6, fontWeight: 600 }}>
-                  <div style={{ fontSize: 15 }}>{d.ar}</div>
-                  <div style={{ fontSize: 13, color: '#1a7f37' }}>{d.en}</div>
-                  <div style={{ fontSize: 13, color: '#888' }}>{d.enStatic}</div>
+                <th key={i} className="calendar-th">
+                  <div className="calendar-th-ar">{d.ar}</div>
+                  <div className="calendar-th-en">{d.en}</div>
+                  <div className="calendar-th-enstatic">{d.enStatic}</div>
                 </th>
               ))}
             </tr>
@@ -131,15 +130,14 @@ const CalendarHijri: React.FC = () => {
                   return (
                     <td
                       key={colIdx}
-                      style={{ padding: 8, minWidth: 60, height: 60, verticalAlign: 'top', background: isToday ? '#e6f7e6' : undefined, border: isToday ? '2px solid #1a7f37' : undefined, borderRadius: isToday ? 8 : undefined }}
-                      className={isToday ? 'calendar-today' : ''}
+                      className={isToday ? 'calendar-today calendar-td' : 'calendar-td'}
                     >
                       {cell && (
                         <>
-                          <div style={{ fontWeight: 600 }}>{cell.hijri.day}</div>
-                          <div style={{ fontSize: 13, color: '#888' }}>{cell.gregorian.day}</div>
-                          <div style={{ fontSize: 12, marginTop: 2 }}>{cell.hijri.date}</div>
-                          <div style={{ fontSize: 11, color: '#888' }}>{cell.gregorian.date}</div>
+                          <div className="calendar-hijri-day">{cell.hijri.day}</div>
+                          <div className="calendar-gregorian-day">{cell.gregorian.day}</div>
+                          <div className="calendar-hijri-date">{cell.hijri.date}</div>
+                          <div className="calendar-gregorian-date">{cell.gregorian.date}</div>
                         </>
                       )}
                     </td>

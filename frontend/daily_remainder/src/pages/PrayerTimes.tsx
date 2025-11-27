@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import BackHomeButton from "../components/BackHomeButton";
 import { getPrayerTimesByCity } from "../services/api";
 import { PrayerResponse, Timings } from "../types/prayer";
 import "./PrayerTimes.css";

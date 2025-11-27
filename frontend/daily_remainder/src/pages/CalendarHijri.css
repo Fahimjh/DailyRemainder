@@ -1,3 +1,88 @@
+.calendar-title {
+  text-align: center;
+}
+
+.calendar-header-outer {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+}
+
+.calendar-month-info {
+  text-align: center;
+}
+.calendar-hijri-ar {
+  font-weight: 600;
+  font-size: 17px;
+  color: #1a7f37;
+}
+.calendar-hijri-en {
+  font-weight: 500;
+  font-size: 14px;
+  color: #888;
+}
+.calendar-gregorian {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.calendar-table-wrapper {
+  overflow-x: auto;
+  padding: 0;
+}
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  background: #fff;
+}
+.calendar-th {
+  padding: 6px;
+  font-weight: 600;
+}
+.calendar-th-ar {
+  font-size: 15px;
+}
+.calendar-th-en {
+  font-size: 13px;
+  color: #1a7f37;
+}
+.calendar-th-enstatic {
+  font-size: 13px;
+  color: #888;
+}
+.calendar-td {
+  padding: 8px;
+  min-width: 60px;
+  height: 60px;
+  vertical-align: top;
+}
+.calendar-hijri-day {
+  font-weight: 600;
+}
+.calendar-gregorian-day {
+  font-size: 13px;
+  color: #888;
+}
+.calendar-hijri-date {
+  font-size: 12px;
+  margin-top: 2px;
+}
+.calendar-gregorian-date {
+  font-size: 11px;
+  color: #888;
+}
 .calendar-page {
   max-width: 600px;
   margin: 32px auto 0 auto;

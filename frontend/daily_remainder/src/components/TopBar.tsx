@@ -1,8 +1,16 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const TopBar: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
   return (
     <div style={{
       width: '100%',
@@ -27,9 +35,20 @@ const TopBar: React.FC = () => {
       </div>
       <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
         <div style={{ minWidth: 260, textAlign: 'right', marginRight: 48, display: 'flex', gap: 24, justifyContent: 'flex-end', alignItems: 'center' }}>
-          <Link to="/" style={{ color: '#069077', fontWeight: 600, textDecoration: location.pathname === '/' ? 'underline' : 'none', fontSize: 18 }}>Home</Link>
-          <Link to="/login" style={{ color: '#069077', fontWeight: 600, textDecoration: location.pathname === '/login' ? 'underline' : 'none', fontSize: 18 }}>Login</Link>
-          <Link to="/register" style={{ color: '#069077', fontWeight: 600, textDecoration: location.pathname === '/register' ? 'underline' : 'none', fontSize: 18 }}>Register</Link>
+          {user && location.pathname !== '/dashboard' && (
+            <Link to="/dashboard" style={{ color: '#069077', fontWeight: 600, textDecoration: location.pathname === '/dashboard' ? 'underline' : 'none', fontSize: 18 }}>Dashboard</Link>
+          )}
+          {(!user || location.pathname !== '/') && (
+            <Link to="/" style={{ color: '#069077', fontWeight: 600, textDecoration: location.pathname === '/' ? 'underline' : 'none', fontSize: 18 }}>Home</Link>
+          )}
+          {!user && (
+            <Link to="/login" style={{ color: '#069077', fontWeight: 600, textDecoration: location.pathname === '/login' ? 'underline' : 'none', fontSize: 18 }}>Login</Link>
+          )}
+          {user ? (
+            <span onClick={handleLogout} style={{ color: '#069077', fontWeight: 600, cursor: 'pointer', fontSize: 18 }}>Logout</span>
+          ) : (
+            <Link to="/register" style={{ color: '#069077', fontWeight: 600, textDecoration: location.pathname === '/register' ? 'underline' : 'none', fontSize: 18 }}>Register</Link>
+          )}
         </div>
       </div>
     </div>

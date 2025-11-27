@@ -1,18 +1,19 @@
 // src/pages/Tasbih.tsx
-import React, { useEffect, useState } from "react";
-import BackHomeButton from "../components/BackHomeButton";
+import React, { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { saveTasbihCount } from "../services/api";
 import "./Tasbih.css";
 
 const LOCAL_KEY = "tasbih_local_count";
-const USER_KEY = "user"; // expecting JSON string of { _id, name, email } after login
-const TOKEN_KEY = "token"; // expecting JWT after login
+const USER_KEY = "user";
+const TOKEN_KEY = "token";
 
 const Tasbih: React.FC = () => {
   const [count, setCount] = useState<number>(() => {
     const v = localStorage.getItem(LOCAL_KEY);
     return v ? Number(v) : 0;
   });
+  const { user } = useContext(AuthContext);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
@@ -26,24 +27,15 @@ const Tasbih: React.FC = () => {
 
   const handleSave = async () => {
     setMessage(null);
-
     const token = localStorage.getItem(TOKEN_KEY);
     const userJson = localStorage.getItem(USER_KEY);
-    if (!userJson) {
-      setMessage("Not logged in — saved locally. Login to save to your account.");
-      return;
-    }
-
+    if (!userJson) return;
     try {
       setSaving(true);
       const user = JSON.parse(userJson);
-      // user._id expected
-      const res = await saveTasbihCount(user._id || user.id || user.userId, count, token || undefined);
+      await saveTasbihCount(user._id || user.id || user.userId, count, token || undefined);
       setMessage("Saved to your account.");
-      // optionally update localStorage/UX with response
-      console.log("save response", res);
     } catch (err: any) {
-      console.error(err);
       setMessage(err?.response?.data?.message || "Failed to save — try again.");
     } finally {
       setSaving(false);
@@ -68,12 +60,11 @@ const Tasbih: React.FC = () => {
         </div>
 
         <div className="save-row">
-          <button className="btn save" onClick={handleSave} disabled={saving}>
-            {saving ? "Saving..." : "Save to Account"}
-          </button>
-          <div className="small-note">
-            Counts are stored locally if you are not logged in.
-          </div>
+          {user && (
+            <button className="btn save" onClick={handleSave} disabled={saving}>
+              {saving ? "Saving..." : "Save to Account"}
+            </button>
+          )}
         </div>
 
         {message && <div className="msg">{message}</div>}

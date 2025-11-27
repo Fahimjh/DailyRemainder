@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import BackHomeButton from "../components/BackHomeButton";
 
 // Kaaba coords
 const KAABA = { lat: 21.422487, lon: 39.826206 };

@@ -1,33 +1,39 @@
-
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import API from "../services/apiInstance";
+import { addBookmarkServer } from "../services/api";
+import { AuthContext } from "../context/AuthContext";
+import { useSearchParams } from "react-router-dom";
 import "./Quran.css";
 
-interface Ayah {
-  number: number;
-  text: string;
-  surah: { number: number; name: string; englishName: string };
-  bangla?: string;
-}
 
 const TOTAL_JUZ = 30;
 
 const Quran: React.FC = () => {
-  const [juz, setJuz] = useState<number>(1);
-  const [ayahs, setAyahs] = useState<Ayah[]>([]);
+  const [searchParams] = useSearchParams();
+  const initialJuz = Number(searchParams.get('juz')) || 1;
+  const [juz, setJuz] = useState<number>(initialJuz);
   const [loading, setLoading] = useState(false);
   const [juzInfo, setJuzInfo] = useState<any>(null);
+  const [msg, setMsg] = useState<string | null>(null);
+  const { user } = useContext(AuthContext);
+  const handleBookmarkJuz = async () => {
+    if (!user) return;
+    try {
+      await addBookmarkServer("juz", { number: juz, name: `Juz ${juz}` });
+      setMsg("Bookmark saved!");
+    } catch {
+      setMsg("Failed to save bookmark.");
+    }
+    setTimeout(() => setMsg(null), 2500);
+  };
 
   const fetchJuz = async (juzNum: number) => {
     setLoading(true);
     try {
       const res = await API.get(`/quran/juz/${juzNum}`);
       setJuzInfo(res.data);
-      setAyahs(res.data.ayahs || []);
     } catch {
       setJuzInfo(null);
-      setAyahs([]);
     } finally {
       setLoading(false);
     }
@@ -50,22 +56,22 @@ const Quran: React.FC = () => {
       <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginBottom: 18 }}>
         <button className="btn outline" onClick={handlePrev} disabled={juz === 1}>Previous Juz</button>
         <button className="btn outline" onClick={handleNext} disabled={juz === TOTAL_JUZ}>Next Juz</button>
+        {user && (
+          <button className="btn primary" style={{ marginLeft: 16 }} onClick={handleBookmarkJuz}>Bookmark</button>
+        )}
       </div>
+      {msg && (
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <div style={{ background: '#e6fff2', color: '#06624b', border: '1px solid #b2e5d3', borderRadius: 6, padding: '8px 18px', margin: '10px 0 0 0', fontWeight: 500, textAlign: 'center', minWidth: 0, maxWidth: 260, width: 'auto', boxShadow: '0 2px 8px #b2e5d355', transition: 'opacity 0.3s' }}>{msg}</div>
+        </div>
+      )}
       {loading ? (
         <div>Loading...</div>
       ) : !juzInfo ? (
         <div>Juz not found.</div>
       ) : (
         <div style={{ marginTop: 24 }}>
-          {ayahs.map(a => (
-            <div key={a.number} className="juz-ayah">
-              <div className="juz-ayah-arabic">{a.text}</div>
-              {a.bangla && (
-                <div className="ayah-translation ayah-translation-bn" style={{ marginBottom: 8 }}>{a.bangla}</div>
-              )}
-              <div className="juz-ayah-meta">Surah {a.surah.englishName} ({a.surah.name}) - Ayah {a.number}</div>
-            </div>
-          ))}
+          {/* Display Juz details here, e.g., summary or metadata if needed */}
         </div>
       )}
     </div>
