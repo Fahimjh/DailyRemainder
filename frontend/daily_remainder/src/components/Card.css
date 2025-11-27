@@ -6,15 +6,38 @@
   cursor: pointer;
   text-align: center;
   transition: 0.2s;
+  max-width: 340px;
+  margin: 0 auto;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: #666;
 }
 
 .card:hover {
   transform: scale(1.05);
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
   .card {
-    padding: 15px;
+    padding: 12px 8px;
+    max-width: 98vw;
+    min-height: 90px;
+  }
+  .card h3 {
+    font-size: 1.05rem;
+  }
+  .card-subtitle {
+    font-size: 0.95rem;
   }
 }
