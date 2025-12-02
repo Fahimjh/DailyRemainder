@@ -40,12 +40,28 @@ router.get("/surah", async (req, res) => {
   }
 });
 
-// Get a specific surah by number (returns raw API response)
+// Get a specific surah by number (merged Arabic and Bengali translation)
 router.get("/surah/:number", async (req, res) => {
   try {
     const { number } = req.params;
-    const response = await axios.get(`https://api.alquran.cloud/v1/surah/${number}`);
-    res.json(response.data.data);
+    // Fetch Arabic and Bengali translations in parallel
+    const [arRes, bnRes] = await Promise.all([
+      axios.get(`https://api.alquran.cloud/v1/surah/${number}`),
+      axios.get(`https://api.alquran.cloud/v1/surah/${number}/bn.bengali`)
+    ]);
+    const arAyahs = arRes.data.data.ayahs;
+    const bnAyahs = bnRes.data.data.ayahs;
+    // Merge by ayah number (assuming both arrays are in the same order)
+    const mergedAyahs = arAyahs.map((arAyah: any, idx: number) => ({
+      number: arAyah.number,
+      text: arAyah.text,
+      bangla: bnAyahs[idx]?.text || ""
+    }));
+    // Return the same structure as before, but with merged ayahs
+    res.json({
+      ...arRes.data.data,
+      ayahs: mergedAyahs
+    });
   } catch (err) {
     res.status(500).json({ message: "Failed to fetch surah" });
   }
