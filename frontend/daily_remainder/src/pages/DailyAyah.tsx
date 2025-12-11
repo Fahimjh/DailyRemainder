@@ -95,11 +95,11 @@ const DailyAyah: React.FC = () => {
             {ayah.translation_bn && (
               <div className="ayah-translation ayah-translation-bn">{ayah.translation_bn}</div>
             )}
-            {ayah.reference_bn && (
-              <div className="ayah-ref ayah-ref-bn">{ayah.reference_bn.replace(/سورة.*?،/g, '').trim()}</div>
+            {ayah.reference_en && (
+              <div className="ayah-ref ayah-ref-en">{ayah.reference_en}</div>
             )}
-            {ayah.surah_ar && ayah.number && (
-              <div className="ayah-ref ayah-ref-ar">سورة {ayah.surah_ar}، آية {ayah.number}</div>
+            {ayah.reference_ar && (
+              <div className="ayah-ref ayah-ref-ar">{ayah.reference_ar}</div>
             )}
           </div>
         ) : (
