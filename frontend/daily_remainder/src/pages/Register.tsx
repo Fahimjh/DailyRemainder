@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import "./Register.css";
 import API from "../services/apiInstance";
 import "./AuthCard.css";
 import { Link } from "react-router-dom";
